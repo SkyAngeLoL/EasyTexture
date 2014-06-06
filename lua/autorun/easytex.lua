@@ -17,10 +17,10 @@ if SERVER then AddCSLuaFile() return end
 local DrawTexRect = surface.DrawTexturedRectUV
 local DrawColor = surface.SetDrawColor
 local DrawMat = surface.SetMaterial
-local color_white = color_white
-local Material = Material
+
 
 easytex = easytex or {}
+
 
 /*================
 	Cut rect
