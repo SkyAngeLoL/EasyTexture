@@ -1,19 +1,22 @@
-/*==============================
+/*=========================================================
+
 Made by SkyAngeLoL
 
 It 70% of copy GWEN module
 
 :3
 
-Used for cutting .png .bmp .jpg
-and other types images.
-==============================*/
+Used for cutting .png .bmp .jpg and other image types.
+
+=========================================================*/
 
 MsgC(Color(0, 255, 0), "[GLua+] ") MsgN"easytex.lua"
 
 if SERVER then AddCSLuaFile() return end
 
-local surface = surface
+local DrawTexRect = surface.DrawTexturedRectUV
+local DrawColor = surface.SetDrawColor
+local DrawMat = surface.SetMaterial
 local color_white = color_white
 local Material = Material
 
@@ -36,9 +39,9 @@ function easytex.CreateTexture(_x, _y, _w, _h, _material)
 		
 	return function(x, y, w, h, col)
 		
-		surface.SetMaterial(_material)
-		surface.SetDrawColor(col or color_white)
-		surface.DrawTexturedRectUV(x, y, w, h, _x, _y, _x + _w, _y + _h)
+		DrawMat(_material)
+		DrawColor(col or color_white)
+		DrawTexRect(x, y, w, h, _x, _y, _x + _w, _y + _h)
 		
 	end
 
@@ -71,23 +74,20 @@ function easytex.CreateTextureBorder(_x, _y, _w, _h, _material, l, t, r, b)
 	
 	return function(x, y, w, h, col)
 		
-		surface.SetMaterial(_material)
-		surface.SetDrawColor(col or color_white)
-		//   ________
-		//  |  |  |  |
-		surface.DrawTexturedRectUV(x, y, l, t, _x, _y, _x + _l, _y + _t)
-		surface.DrawTexturedRectUV(x + l, y, w - l - r, t, _x + _l, _y, _x + _w - _l - _r, _y + _t)
-		surface.DrawTexturedRectUV(x + w - r, y, r, t, _x + _w - _r, _y, _x + _w, _y + _t)
-		//  |__|__|__|
-		//  |  |  |  |
-		surface.DrawTexturedRectUV(x + l, y + t, w - l - r, h - t - b, _x + _l, _y + _t, _x + _w - _r, _y + _h - _b)
-		surface.DrawTexturedRectUV(x, y + t, l, h - t - b, _x, _y + _t, _x + _l, _y + _h - _b)
-		surface.DrawTexturedRectUV(x + w - r, y + t, r, h - t - b, _x + _w-_r, _y + _t, _x + _w, _y + _h - _b)
-		//  |  |  |  |
-		//  |__|__|__|
-		surface.DrawTexturedRectUV(x, y + h - b, l, b, _x, _y + _h - _b, _x + _l, _y + _h)
-		surface.DrawTexturedRectUV(x + l, y + h - b, w - l - r, b, _x + _l, _y + _h-_b, _x + _w - _l - _r, _y + _h)
-		surface.DrawTexturedRectUV(x + w - r, y + h - b, r, b, _x + _w - _r, _y + _h - _b, _x + _w, _y + _h)
+		DrawMat(_material)
+		DrawColor(col or color_white)
+		// Up
+		DrawTexRect(x, y, l, t, _x, _y, _x + _l, _y + _t)
+		DrawTexRect(x + l, y, w - l - r, t, _x + _l, _y, _x + _w - _l - _r, _y + _t)
+		DrawTexRect(x + w - r, y, r, t, _x + _w - _r, _y, _x + _w, _y + _t)
+		// Center
+		DrawTexRect(x + l, y + t, w - l - r, h - t - b, _x + _l, _y + _t, _x + _w - _r, _y + _h - _b)
+		DrawTexRect(x, y + t, l, h - t - b, _x, _y + _t, _x + _l, _y + _h - _b)
+		DrawTexRect(x + w - r, y + t, r, h - t - b, _x + _w-_r, _y + _t, _x + _w, _y + _h - _b)
+		// Bottom
+		DrawTexRect(x, y + h - b, l, b, _x, _y + _h - _b, _x + _l, _y + _h)
+		DrawTexRect(x + l, y + h - b, w - l - r, b, _x + _l, _y + _h-_b, _x + _w - _l - _r, _y + _h)
+		DrawTexRect(x + w - r, y + h - b, r, b, _x + _w - _r, _y + _h - _b, _x + _w, _y + _h)
 	
 	end
 end
@@ -97,7 +97,7 @@ end
 ========================*/
 
 function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
-
+	
 	_material = Material(_material)
 	
 	local tex = _material:GetTexture"$basetexture"
@@ -117,9 +117,9 @@ function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
 		w = width
 		h = height
 		
-		surface.SetMaterial(_material)
-		surface.SetDrawColor(col or color_white)
-		surface.DrawTexturedRectUV(x, y, w, h, _x, _y, _x + _w, _y + _h)
+		DrawMat(_material)
+		DrawColor(col or color_white)
+		DrawTexRect(x, y, w, h, _x, _y, _x + _w, _y + _h)
 
 	end
 
@@ -131,7 +131,7 @@ end
 
 function easytex.GetTextureColor(x, y, _material)
 
-	local mat = Material(_material);
+	local mat = Material(_material)
 	return mat:GetColor(x, y)
 	
 end
