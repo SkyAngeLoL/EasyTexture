@@ -4,8 +4,10 @@ Easy Texture
 Easy work with textures in one file
 
 #### Example:
-```lua
 
+![](http://puu.sh/9hELB/c855aaf709.jpg)
+
+```lua
 /*
 	This texture have size 256x256
 	and one icon have size 128x64
@@ -41,3 +43,4 @@ hook.Add("HUDPaint","test",function()
 	end
 	
 end)
+```
