@@ -1,4 +1,3 @@
-easytexture
+Easy Texture
 ===========
-
-Easy work with textures in 1 file
+Easy work with textures in one file
