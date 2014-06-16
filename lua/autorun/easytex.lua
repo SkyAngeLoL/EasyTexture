@@ -9,7 +9,7 @@ It 70% of copy GWEN module
 Used for cutting .png .bmp .jpg and other image types.
 
 =========================================================*/
-MsgC(Color(0, 255, 0), "[GLua+] ") MsgC(Color(200, 200, 200), "easytex.lua")
+MsgC(Color(0, 255, 0), "[GLua+] ") MsgC(Color(200, 200, 200), "easytex.lua\n")
 
 if SERVER then AddCSLuaFile() return end
 
