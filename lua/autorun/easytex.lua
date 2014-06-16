@@ -9,14 +9,13 @@ It 70% of copy GWEN module
 Used for cutting .png .bmp .jpg and other image types.
 
 =========================================================*/
-
-MsgC(Color(0, 255, 0), "[GLua+] ") MsgN"easytex.lua"
+MsgC(Color(0, 255, 0), "[GLua+] ") MsgC(Color(200, 200, 200), "easytex.lua")
 
 if SERVER then AddCSLuaFile() return end
 
 local DrawTexRect = surface.DrawTexturedRectUV
-local DrawColor = surface.SetDrawColor
-local DrawMat = surface.SetMaterial
+local SetDrawColor = surface.SetDrawColor
+local SetMaterial = surface.SetMaterial
 
 
 easytex = easytex or {}
@@ -39,8 +38,8 @@ function easytex.CreateTexture(_x, _y, _w, _h, _material)
 		
 	return function(x, y, w, h, col)
 		
-		DrawMat(_material)
-		DrawColor(col or color_white)
+		SetMaterial(_material)
+		SetDrawColor(col or color_white)
 		DrawTexRect(x, y, w, h, _x, _y, _x + _w, _y + _h)
 		
 	end
@@ -74,8 +73,8 @@ function easytex.CreateTextureBorder(_x, _y, _w, _h, _material, l, t, r, b)
 	
 	return function(x, y, w, h, col)
 		
-		DrawMat(_material)
-		DrawColor(col or color_white)
+		SetMaterial(_material)
+		SetDrawColor(col or color_white)
 		// Up
 		DrawTexRect(x, y, l, t, _x, _y, _x + _l, _y + _t)
 		DrawTexRect(x + l, y, w - l - r, t, _x + _l, _y, _x + _w - _l - _r, _y + _t)
@@ -117,8 +116,8 @@ function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
 		w = width
 		h = height
 		
-		DrawMat(_material)
-		DrawColor(col or color_white)
+		SetMaterial(_material)
+		SetDrawColor(col or color_white)
 		DrawTexRect(x, y, w, h, _x, _y, _x + _w, _y + _h)
 
 	end
