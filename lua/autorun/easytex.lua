@@ -11,25 +11,22 @@ Used for cutting .png .bmp .jpg and other image types.
 =========================================================*/
 MsgC(Color(0, 255, 0), "[GLua+] ") MsgC(Color(200, 200, 200), "easytex.lua\n")
 
+easytex = {}
+
 if SERVER then AddCSLuaFile() return end
 
 local DrawTexRect = surface.DrawTexturedRectUV
 local SetDrawColor = surface.SetDrawColor
 local SetMaterial = surface.SetMaterial
 
-
-easytex = easytex or {}
-
-
 /*================
 	Cut rect
 ================*/
 
 function easytex.CreateTexture(_x, _y, _w, _h, _material)
-	
 	_material = Material(_material)
 	
-	local tex = _material:GetTexture"$basetexture"
+	local tex = _material:GetTexture("$basetexture")
 	
 	_x = _x / tex:Width()
 	_y = _y / tex:Height()
@@ -43,7 +40,6 @@ function easytex.CreateTexture(_x, _y, _w, _h, _material)
 		DrawTexRect(x, y, w, h, _x, _y, _x + _w, _y + _h)
 		
 	end
-
 end
 
 /*======================
@@ -51,10 +47,9 @@ end
 ======================*/
 
 function easytex.CreateTextureBorder(_x, _y, _w, _h, _material, l, t, r, b)
-	
 	_material = Material(_material)
 	
-	local tex = _material:GetTexture"$basetexture"
+	local tex = _material:GetTexture("$basetexture")
 	
 	_x = _x / tex:Width()
 	_y = _y / tex:Height()
@@ -96,10 +91,9 @@ end
 ========================*/
 
 function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
-	
 	_material = Material(_material)
 	
-	local tex = _material:GetTexture"$basetexture"
+	local tex = _material:GetTexture("$basetexture")
 	
 	local width = _w
 	local height = _h
@@ -121,7 +115,6 @@ function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
 		DrawTexRect(x, y, w, h, _x, _y, _x + _w, _y + _h)
 
 	end
-
 end
 
 /*========================
@@ -129,8 +122,6 @@ end
 ========================*/
 
 function easytex.GetTextureColor(x, y, _material)
-
 	local mat = Material(_material)
 	return mat:GetColor(x, y)
-	
 end
