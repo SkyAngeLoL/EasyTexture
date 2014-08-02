@@ -1,4 +1,4 @@
-/*=========================================================
+--[[=========================================================
 
 Made by SkyAngeLoL
 
@@ -8,10 +8,12 @@ It 70% of copy GWEN module
 
 Used for cutting .png .bmp .jpg and other image types.
 
-=========================================================*/
+=========================================================]]--
 MsgC(Color(0, 255, 0), "[GLua+] ") MsgC(Color(200, 200, 200), "easytex.lua\n")
 
 easytex = {}
+
+_EASYTEXT_ = true -- "#define" for checing this addon 
 
 if SERVER then AddCSLuaFile() return end
 
@@ -19,9 +21,9 @@ local DrawTexRect = surface.DrawTexturedRectUV
 local SetDrawColor = surface.SetDrawColor
 local SetMaterial = surface.SetMaterial
 
-/*================
+--[[================
 	Cut rect
-================*/
+================]]--
 
 function easytex.CreateTexture(_x, _y, _w, _h, _material)
 	_material = Material(_material)
@@ -42,9 +44,9 @@ function easytex.CreateTexture(_x, _y, _w, _h, _material)
 	end
 end
 
-/*======================
+--[[======================
 	Cut border rect
-======================*/
+======================]]--
 
 function easytex.CreateTextureBorder(_x, _y, _w, _h, _material, l, t, r, b)
 	_material = Material(_material)
@@ -86,9 +88,9 @@ function easytex.CreateTextureBorder(_x, _y, _w, _h, _material, l, t, r, b)
 	end
 end
 
-/*========================
+--[[========================
 	Cut centered rect
-========================*/
+========================]]--
 
 function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
 	_material = Material(_material)
@@ -117,9 +119,9 @@ function easytex.CreateTextureCentered(_x, _y, _w, _h, _material)
 	end
 end
 
-/*========================
+--[[========================
 	Return pixel color
-========================*/
+========================]]--
 
 function easytex.GetTextureColor(x, y, _material)
 	local mat = Material(_material)
