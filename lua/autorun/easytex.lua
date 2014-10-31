@@ -13,8 +13,6 @@ MsgC(Color(0, 255, 0), "[GLua+] ") MsgC(Color(200, 200, 200), "easytex.lua\n")
 
 easytex = {}
 
-_EASYTEXT_ = true -- "#define" for checing this addon 
-
 if SERVER then AddCSLuaFile() return end
 
 local DrawTexRect = surface.DrawTexturedRectUV
